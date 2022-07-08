@@ -36,6 +36,15 @@ export const Input: React.FC<InputProps> = ({
         setValue("");
     }, [dispatch, value]);
 
+    const handleKeyPress = useCallback(
+        (event: React.KeyboardEvent<HTMLInputElement>) => {
+            if (event.key === "Enter") {
+                handleAddItem();
+            }
+        },
+        [handleAddItem],
+    );
+
     return (
         <div className="relative">
             <label htmlFor={name}>{label}</label>
@@ -43,6 +52,7 @@ export const Input: React.FC<InputProps> = ({
                 ref={ref}
                 value={value}
                 onChange={onChange}
+                onKeyDown={handleKeyPress}
                 className={classNames(
                     "py-3 px-5 w-full border-2 rounded-xl",
                     className,

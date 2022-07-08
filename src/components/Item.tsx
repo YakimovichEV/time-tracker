@@ -35,7 +35,8 @@ export const Item: React.FC<ItemProps> = ({
 
     useEffect(() => {
         const now = DateTime.now().toSeconds();
-        if (isActive) {
+
+        if (active) {
             setCounter({
                 seconds: Math.ceil(now - snapShotTik + time.seconds),
             });
@@ -43,7 +44,7 @@ export const Item: React.FC<ItemProps> = ({
     }, []);
 
     useEffect(() => {
-        let timerId: any;
+        let timerId: NodeJS.Timer;
 
         dispatch(
             updateItem({
@@ -63,6 +64,7 @@ export const Item: React.FC<ItemProps> = ({
                 setSnapshotTik(DateTime.now().toSeconds());
             }, 1000);
         }
+
         return () => clearInterval(timerId);
     }, [id, name, counter, active, snapShotTik, dispatch]);
 
@@ -78,7 +80,7 @@ export const Item: React.FC<ItemProps> = ({
 
     return (
         <div className={active ? styles.changed : styles.default}>
-            <div>{name}</div>
+            <div className="w-20 truncate sm:w-40 xl:w-60 2xl:w-80">{name}</div>
             <div>
                 {Duration.fromObject(counter).toISOTime({
                     suppressMilliseconds: true,

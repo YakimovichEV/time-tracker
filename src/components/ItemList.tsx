@@ -24,4 +24,4 @@ export const ItemList: React.FC = () => {
     );
 };
 
-// To do: LocalStorage, enter, name, styles
+// To do: LocalStorage
