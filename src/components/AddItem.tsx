@@ -46,7 +46,8 @@ export const AddItem: React.FC = () => {
             <Button
                 type="button"
                 onClick={handleAddItem}
-                className="bg-green-600 absolute right-1 top-[2px]"
+                className="absolute right-1 top-[2px]"
+                disabled={value.length <= 0 ? true : false}
             >
                 <FaTelegramPlane />
             </Button>
